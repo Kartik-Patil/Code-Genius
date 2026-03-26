@@ -1,0 +1,51 @@
+/* Global reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #0f0f13;
+  --color-surface: #1a1a24;
+  --color-surface-2: #22222e;
+  --color-border: #2e2e3e;
+  --color-primary: #7c5cfc;
+  --color-primary-hover: #6a4de8;
+  --color-text: #e8e8f0;
+  --color-text-muted: #888899;
+  --color-error: #ff5f6d;
+  --color-success: #37d67a;
+  --color-warning: #ffb347;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+  --radius: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}

@@ -1,0 +1,12 @@
+.error-boundary {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(255, 95, 109, 0.08);
+  color: #ffc3c8;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  text-align: center;
+}

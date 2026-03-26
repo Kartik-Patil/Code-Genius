@@ -1,0 +1,93 @@
+.history-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 16px 28px;
+}
+
+.history-wrap h2 {
+  margin-bottom: 14px;
+}
+
+.history-message {
+  color: var(--color-warning);
+  margin-bottom: 10px;
+}
+
+.history-loading,
+.history-empty {
+  color: var(--color-text-muted);
+  padding: 24px 0;
+}
+
+.history-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.history-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--color-surface);
+}
+
+.history-item-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.history-item-meta span {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.history-item pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #12131a;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px;
+  max-height: 180px;
+  overflow: auto;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.history-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-danger {
+  background: transparent;
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+}
+
+.history-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.history-pagination button {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: var(--radius);
+  padding: 7px 11px;
+}
+
+.history-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
