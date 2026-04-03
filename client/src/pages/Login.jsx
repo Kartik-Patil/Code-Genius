@@ -48,7 +48,7 @@ const Login = () => {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-logo">
-          <span className="auth-logo-icon">⚡</span>
+          <span className="auth-logo-icon">💻</span>
           <span className="auth-logo-text">Code Genius</span>
         </div>
         <h1 className="auth-title">Welcome back</h1>

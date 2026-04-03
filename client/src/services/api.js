@@ -33,12 +33,12 @@ api.interceptors.response.use(
   }
 );
 
-// ─── Auth endpoints ───────────────────────────────────────────────────────────
+// ─── Auth endpoints(API- Application Programming Interface) ───────────────────────────────────────────────────────────
 
 export const registerUser = (data) => api.post('/auth/register', data);
 export const loginUser = (data) => api.post('/auth/login', data);
 
-// ─── AI endpoints ─────────────────────────────────────────────────────────────
+// ─── AI endpoints(API- Application Programming Interface) ─────────────────────────────────────────────────────────────
 
 export const detectErrors = (data, options = {}) =>
   api.post('/ai/detect-errors', data, { signal: options.signal });

@@ -93,7 +93,7 @@
 }
 
 .server-error {
-  background-color: rgba(255, 95, 109, 0.12);
+  background-color: rgba(242, 148, 139, 0.14);
   border: 1px solid var(--color-error);
   border-radius: var(--radius);
   color: var(--color-error);
@@ -107,7 +107,7 @@
   background-color: var(--color-primary);
   border: none;
   border-radius: var(--radius);
-  color: #fff;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 600;
   padding: 12px;

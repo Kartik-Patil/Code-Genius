@@ -18,6 +18,7 @@ const Register = () => {
     if (!form.username) errs.username = 'Username is required.';
     else if (form.username.length < 3) errs.username = 'Username must be at least 3 characters.';
     else if (!/^[a-zA-Z0-9_]+$/.test(form.username)) errs.username = 'Only letters, numbers, and underscores.';
+    
 
     if (!form.email) errs.email = 'Email is required.';
     else if (!/^\S+@\S+\.\S+$/.test(form.email)) errs.email = 'Enter a valid email.';

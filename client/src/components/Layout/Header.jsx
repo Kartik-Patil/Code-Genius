@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <header className="header">
       <Link to="/dashboard" className="header-logo">
-        <span className="header-logo-icon">⚡</span>
+        <span className="header-logo-icon">💻</span>
         <span className="header-logo-text">Code Genius</span>
       </Link>
 
@@ -28,7 +28,7 @@ const Header = () => {
         <button onClick={handleLogout} className="btn-logout">
           Sign Out
         </button>
-      </div>
+      </div> 
     </header>
   );
 };

@@ -6,21 +6,21 @@
 }
 
 :root {
-  --color-bg: #0f0f13;
-  --color-surface: #1a1a24;
-  --color-surface-2: #22222e;
-  --color-border: #2e2e3e;
-  --color-primary: #7c5cfc;
-  --color-primary-hover: #6a4de8;
-  --color-text: #e8e8f0;
-  --color-text-muted: #888899;
-  --color-error: #ff5f6d;
-  --color-success: #37d67a;
-  --color-warning: #ffb347;
+  --color-bg: #fff2ea;
+  --color-surface: #ffffff;
+  --color-surface-2: #fff2ea;
+  --color-border: #fed7ba;
+  --color-primary: #f2948b;
+  --color-primary-hover: #fdb49c;
+  --color-text: #6f3c3a;
+  --color-text-muted: #a66761;
+  --color-error: #f2948b;
+  --color-success: #fdb49c;
+  --color-warning: #f2948b;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', 'Cascadia Code', monospace;
   --radius: 8px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow: 0 10px 28px rgba(242, 148, 139, 0.2);
 }
 
 body {

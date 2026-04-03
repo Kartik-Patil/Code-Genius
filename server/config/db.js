@@ -22,9 +22,11 @@ const connectDB = async () => {
   try {
     await sequelize.authenticate();
     console.log(`MySQL connected: ${process.env.DB_HOST || 'localhost'}:${process.env.DB_PORT || 3306}`);
-    
-    // Sync models (creates tables if they don't exist)
-    await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+
+    // Keep startup sync safe by default.
+    // Set DB_SYNC_ALTER=true only when you intentionally want schema alterations.
+    const shouldAlter = process.env.DB_SYNC_ALTER === 'true';
+    await sequelize.sync(shouldAlter ? { alter: true } : undefined);
     console.log('Database tables synchronized.');
   } catch (error) {
     console.error(`MySQL connection error: ${error.message}`);
