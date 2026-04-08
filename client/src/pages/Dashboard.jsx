@@ -9,6 +9,7 @@ import {
   getSuggestions,
   explainCode,
   saveHistory,
+  runCode,
 } from '../services/api';
 import ErrorBoundary from '../components/Layout/ErrorBoundary';
 import './Dashboard.css';
@@ -28,8 +29,11 @@ const Dashboard = () => {
   const [language, setLanguage] = useState(selectedHistoryItem?.language || 'javascript');
   const [code, setCode] = useState(selectedHistoryItem?.code || defaultSample);
   const [loading, setLoading] = useState(false);
+  const [running, setRunning] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
+  const [executionOutput, setExecutionOutput] = useState('Run code to see output here.');
+  const [isRunPopupOpen, setIsRunPopupOpen] = useState(false);
   const [aiResult, setAiResult] = useState(
     selectedHistoryItem?.aiResponse || {
       errors: '',
@@ -158,6 +162,31 @@ const Dashboard = () => {
     }
   };
 
+  const handleRunCode = async () => {
+    if (!code.trim() || running) return;
+
+    setRunning(true);
+    setMessage('');
+
+    try {
+      const res = await runCode({ code, language });
+      const output = res.data?.output || 'Code executed successfully (no output).';
+      setExecutionOutput(output);
+      setIsRunPopupOpen(true);
+
+      if (res.data?.supported === false) {
+        setMessage(output);
+      }
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || 'Failed to run code.';
+      setExecutionOutput(`Execution error: ${errorMessage}`);
+      setIsRunPopupOpen(true);
+      setMessage(errorMessage);
+    } finally {
+      setRunning(false);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -166,10 +195,10 @@ const Dashboard = () => {
           <div className="editor-toolbar">
             <select value={language} onChange={(e) => setLanguage(e.target.value)}>
               <option value="javascript">JavaScript</option>
-              <option value="typescript">TypeScript</option>
+              {/* <option value="typescript">TypeScript</option> */}
               <option value="python">Python</option>
               <option value="java">Java</option>
-              <option value="cpp">C++</option>
+              {/* <option value="cpp">C++</option> */}
             </select>
 
             <div className="toolbar-actions">
@@ -180,6 +209,14 @@ const Dashboard = () => {
                 disabled={!canAnalyze}
               >
                 {loading ? 'Analyzing...' : 'Analyze'}
+              </button>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={handleRunCode}
+                disabled={!code.trim() || running}
+              >
+                {running ? 'Running...' : 'Run'}
               </button>
               <button className="btn btn-secondary" type="button" onClick={handleSave} disabled={saving}>
                 {saving ? 'Saving...' : 'Save'}
@@ -192,6 +229,11 @@ const Dashboard = () => {
               <CodeEditor language={language} value={code} onChange={setCode} />
             </div>
           </ErrorBoundary>
+
+          <section className="execution-panel" aria-live="polite">
+            <h3>Output</h3>
+            <pre>{executionOutput}</pre>
+          </section>
         </section>
 
         <aside className="dashboard-side">
@@ -202,6 +244,20 @@ const Dashboard = () => {
       </main>
 
       {message && <p className="dashboard-message">{message}</p>}
+
+      {isRunPopupOpen && (
+        <div className="run-popup-backdrop" role="dialog" aria-modal="true" aria-label="Run output">
+          <div className="run-popup-card">
+            <div className="run-popup-header">
+              <h3>Run Output</h3>
+              <button type="button" className="run-popup-close" onClick={() => setIsRunPopupOpen(false)}>
+                Close
+              </button>
+            </div>
+            <pre>{executionOutput}</pre>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

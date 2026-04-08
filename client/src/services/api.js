@@ -49,6 +49,9 @@ export const getSuggestions = (data, options = {}) =>
 export const explainCode = (data, options = {}) =>
   api.post('/ai/explain', data, { signal: options.signal });
 
+export const runCode = (data, options = {}) =>
+  api.post('/ai/run', data, { signal: options.signal });
+
 // ─── History endpoints ───────────────────────────────────────────────────────
 
 export const saveHistory = (data) => api.post('/history', data);

@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const Log = require('../models/Log');
-const { detectErrors, getSuggestions, explainCode } = require('../services/aiService');
+const { detectErrors, getSuggestions, explainCode, executeCode } = require('../services/aiService');
 
 const aiSchema = Joi.object({
   code: Joi.string().min(1).max(50000).required(),
@@ -94,8 +94,23 @@ const explainHandler = async (req, res, next) => {
   }
 };
 
+const runCodeHandler = async (req, res, next) => {
+  try {
+    const { code, language } = validatePayload(req.body);
+    const execution = await executeCode({ code, language });
+
+    return res.json(execution);
+  } catch (err) {
+    if (err.details) {
+      return res.status(400).json({ message: err.message, errors: err.details });
+    }
+    return next(err);
+  }
+};
+
 module.exports = {
   detectErrorsHandler,
   suggestHandler,
   explainHandler,
+  runCodeHandler,
 };
